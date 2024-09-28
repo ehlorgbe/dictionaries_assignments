@@ -21,6 +21,22 @@ menu_items = [
     'T4 ​​FLAN 8'
 ]
 
+
+drink_items = ['D1', 'D2',  'D3', 'D4']
+appetizer_items = ['A1', 'A2',  'A3', 'A4', 'A5']
+salad_items = ['S1', 'S2', 'S3']
+entree_items = ['E1', 'E2',  'E3', 'E4']
+dessert_items =['T1', 'T2',  'T3', 'T4']
+
+# creating random stock numbers in the range 25 to 50 for all items except drinks
+import functions
+appetizer_stock = functions.stock_level(appetizer_items)
+salad_stock = functions.stock_level(salad_items)
+entree_stock = functions.stock_level(entree_items)
+dessert_stock = functions.stock_level(dessert_items)
+
+
+
 # Convert list to list of dictionaries
 menu_dicts = {}
 for item in menu_items:
@@ -31,4 +47,4 @@ for item in menu_items:
     menu_dicts.update(item_dict)
 
 # Print the resulting list of dictionaries
-print(menu_dicts)
+# print(menu_dicts)

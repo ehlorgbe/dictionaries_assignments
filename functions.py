@@ -14,7 +14,7 @@ def update_item(menu_dicts, item_code, new_description=None, new_price=None):
             menu_dicts[item_code][0] = new_description
         if new_price:
             menu_dicts[item_code][1] = new_price
-        print(f"Updated {item_code}: ${menu_dicts[item_code]}")
+        print(f"Updated {item_code}: {menu_dicts[item_code]}")
     else:
         print(f"Item {item_code} not found.")
 
@@ -43,12 +43,12 @@ def display_menu(menu_dicts):
 
 def customer_request(item_code, quantity):
     if item_code not in data.menu_dicts:
-        return f"Item {item_code} is not on the menu."
-    if item_code in data.menu_dicts:
-        stock = all_stock[item_code]
+        return f"Item {item_code} is not on the menu.\n"
+    if item_code in data.all_stock:
+        stock = data.all_stock[item_code]
         if quantity > stock:
-            return f"Not enough stock for {menu_dicts[item_code]['name']}. Available: {stock}, Requested: {quantity}."
-        all_stock[item_code] -= quantity
-        return f"Order successful! {quantity} {menu_dicts[item_code]['name']} ordered."
+            return f"Not enough stock for {data.menu_dicts[item_code][0]}. Available: {stock}, Requested: {quantity}.\n"
+        data.all_stock[item_code] -= quantity
+        return f"Order successful! {quantity} {data.menu_dicts[item_code][0]} ordered.\n"
     else:
-        return "Drinks have no stock limitation."
+        return f"{quantity} drinks added to order.\n"

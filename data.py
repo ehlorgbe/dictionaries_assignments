@@ -35,8 +35,13 @@ salad_stock = functions.stock_level(salad_items)
 entree_stock = functions.stock_level(entree_items)
 dessert_stock = functions.stock_level(dessert_items)
 
+def merged_stock(*stock):
+    ouptput = {}
+    for item in stock:
+        ouptput.update(item)
+    return ouptput
 
-
+all_stock = (merged_stock(appetizer_stock,salad_stock,entree_stock,dessert_stock))
 
 # Convert list to list of dictionaries
 menu_dicts = {}
@@ -47,5 +52,6 @@ for item in menu_items:
     }
     menu_dicts.update(item_dict)
 
-# Print the resulting list of dictionaries
+# print(appetizer_stock)
 # print(menu_dicts)
+# print(all_stock)

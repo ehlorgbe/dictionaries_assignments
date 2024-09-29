@@ -3,23 +3,39 @@ import functions
 
 
 def show_main_menu():
-    functions.display_menu(data.menu_dicts)
-    
     print("Elliot's diner") 
     print("__________")
     print('U to UPDATE a menu item')
     print('T to TAKE a customer order')
     print('X for close orders and print the check')
-    print('Q for quit')
+    
     user_choice_menu = input("Your choice: ")
     if user_choice_menu in "Uu":
-        print("C to change item description or price")
+        functions.display_menu(data.menu_dicts)
+        print("________\n")
         print("A to add a new menu items")
-        print("R to remove an item from the menu")
-        # update_choice = input("Your choice")
-        # if update_choice in "Cc":
+        print("C to change item name or price")
+        print("R to remove an item from the menu\n")
+        update_choice = input("Your choice: ")
+        if update_choice in "Cc":
+            print("leave empty and press Enter to keep existing values ")
+            functions.update_item(data.menu_dicts,input("item_code: "),input("new name: "),input("new price: "))
+        elif update_choice in "Aa":   #this is contains bugs fix it
+            item_code = (input("New item code: ")).upper()
+            if item_code[0] not in ["D","A","S","E","T"]:
+                print("Invalid item code")
+                show_main_menu()
+            else:
+                functions.add_item(data.menu_dicts,item_code,input("New item name: "),input("price: "))
+        elif update_choice in "Rr":
+                functions.remove_item(data.menu_dicts,input("item code: "))
+    elif user_choice_menu in "Tt":
+         functions.customer_request(input("item code: "),input("Quantiy: "))
+
+            
 
 
-show_main_menu()
+# show_main_menu()
 
-# functions.display_menu(data.menu_dicts)
+functions.display_menu(data.menu_dicts)
+# print(data.drink_items)

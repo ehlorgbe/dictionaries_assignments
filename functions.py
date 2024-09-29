@@ -1,5 +1,5 @@
 import random
-
+import data
 def stock_level(food_item):
     """determine random stock levels"""
     dict = {}
@@ -14,24 +14,22 @@ def update_item(menu_dicts, item_code, new_description=None, new_price=None):
             menu_dicts[item_code][0] = new_description
         if new_price:
             menu_dicts[item_code][1] = new_price
-        print(f"Updated {item_code}: {menu_dicts[item_code]}")
+        print(f"Updated {item_code}: ${menu_dicts[item_code]}")
     else:
         print(f"Item {item_code} not found.")
 
 # Adding new items
-def add_item(menu_dicts, item_code, description, price, category_list):
+def add_item(menu_dicts, item_code, description, price):
     if item_code not in menu_dicts:
         menu_dicts[item_code] = [description, price]
-        category_list.append(item_code)
         print(f"Added {item_code}: {menu_dicts[item_code]}")
     else:
         print(f"Item {item_code} already exists.")
 
 # Removing items
-def remove_item(menu_dicts, item_code, category_list):
+def remove_item(menu_dicts, item_code):
     if item_code in menu_dicts:
         del menu_dicts[item_code]
-        category_list.remove(item_code)
         print(f"Removed {item_code}.")
     else:
         print(f"Item {item_code} not found.")
@@ -42,10 +40,11 @@ def display_menu(menu_dicts):
         print(f"{item_code}: {details[0]} - ${details[1]}")
 
 
+
 def customer_request(item_code, quantity):
-    if item_code not in menu_dicts:
+    if item_code not in data.menu_dicts:
         return f"Item {item_code} is not on the menu."
-    if item_code in all_stock:
+    if item_code in data.menu_dicts:
         stock = all_stock[item_code]
         if quantity > stock:
             return f"Not enough stock for {menu_dicts[item_code]['name']}. Available: {stock}, Requested: {quantity}."
